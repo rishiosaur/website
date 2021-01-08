@@ -1,73 +1,47 @@
-import { Box, Flex, Heading, Image, Input, Stack, Text } from '@chakra-ui/react'
+/* eslint-disable no-case-declarations */
+import {
+	Avatar,
+	Box,
+	Flex,
+	Heading,
+	Image,
+	Input,
+	Stack,
+	Text,
+} from '@chakra-ui/react'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TerminalLayout } from '../src/layouts/index'
 import { useCommands } from '../src/hooks/command'
 import { Command, CommandType } from '../src/types/index'
+import { Commands, CommandWrapper } from '../src/components/command/index'
+import { WritingsCommand } from '../src/components/features'
+import { Error } from '../src/components/atoms'
 
 export default function Home() {
-	const { commands, setCommands } = useCommands()
-
-	const [currentCommand, setCurrentCommand] = useState('')
-
 	return (
 		<TerminalLayout>
-			<Stack direction="row" spacing="2">
-				<Box>
+			<Flex width="100%" direction="row">
+				<Box width="20rem">
 					<Image src="https://scrapbook.hackclub.com/attachments/02cbaad88de654cd9508069400e7f4a7/7e8503ea/" />
 				</Box>
-				<Box>
+
+				<Stack marginLeft="5">
 					<Text>👋 Hey there!</Text>
 					<Heading>I'm Rishi Kothari.</Heading>
-				</Box>
-			</Stack>
-
-			<Stack>
-				{commands.map(({ type }) => {
-					switch (type) {
-						default:
-							return (
-								<Stack spacing="0" direction="row">
-									<Text width="12rem">{'user@macos ->'}</Text>
-									<Input
-										isReadOnly
-										variant="unstyled"
-										placeholder="Unstyled"
-										onChange={(e) => {
-											console.log(e.target.value)
-											setCurrentCommand(e.target.value)
-										}}
-										value={currentCommand}
-										onKeyPress={({ key }) => {
-											if (key === 'Enter') {
-												const command = new Command(currentCommand)
-												setCommands(commands.concat(command))
-											}
-										}}
-									/>
-								</Stack>
-							)
-					}
-				})}
-				<Stack spacing="0" direction="row">
-					<Text width="12rem">{'user@macos ->'}</Text>
-					<Input
-						variant="unstyled"
-						placeholder="Unstyled"
-						onChange={(e) => {
-							console.log(e.target.value)
-							setCurrentCommand(e.target.value)
-						}}
-						value={currentCommand}
-						onKeyPress={({ key }) => {
-							if (key === 'Enter') {
-								const command = new Command(currentCommand)
-								setCommands(commands.concat(command))
-							}
-						}}
-					/>
+					<Text>
+						TL;DR I'm a 15 year old open-source software engineer, SaaS startup
+						CEO, and coffee lover that really likes to make things using awesome
+						technologies.
+					</Text>
+					<Text>
+						My website's a spin on the terminal—try running 'help' in the prompt
+						to get started!
+					</Text>
 				</Stack>
-			</Stack>
+			</Flex>
+
+			<Commands />
 		</TerminalLayout>
 	)
 }
