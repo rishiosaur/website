@@ -39,7 +39,7 @@ const Writings: React.FC<{ command: Command }> = ({ command }) => {
 	}
 
 	return (
-		<CommandWrapper command="view writings" color="warn">
+		<CommandWrapper command={command} color="warn">
 			<Text>Loading writings from CMS...</Text>
 		</CommandWrapper>
 	)

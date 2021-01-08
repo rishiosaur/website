@@ -43,12 +43,13 @@ export const Commands: React.FC = () => {
 
 	const router = useRouter()
 
-	const bottomRef = useRef()
+	const bottomRef = useRef(null)
 	const scrollToBottom = () => {
-		bottomRef.current.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start',
-		})
+		if (bottomRef)
+			bottomRef.current.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start',
+			})
 	}
 
 	useEffect(() => {

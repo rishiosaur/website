@@ -1,6 +1,6 @@
 import { Box, Text, useColorMode, Link as ChakraLink } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { Link as NextLink } from 'next/link'
+import { default as NextLink } from 'next/link'
 import { mode } from '../util/index'
 
 export const Error: React.FC<{ message: string }> = ({ message, children }) => {
