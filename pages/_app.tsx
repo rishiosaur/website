@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { Center, ChakraProvider } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import { CommandProvider } from '../src/hooks/command'
 import theme from '../src/theme/index'
@@ -7,7 +7,9 @@ const App = ({ Component, pageProps }) => (
 	<>
 		<CommandProvider>
 			<ChakraProvider theme={theme}>
-				<Component {...pageProps} />
+				<Center>
+					<Component {...pageProps} />
+				</Center>
 			</ChakraProvider>
 		</CommandProvider>
 		<style jsx global>
