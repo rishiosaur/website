@@ -2,9 +2,12 @@ import { extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
 const colors = {
-	light: '#e0e1dd',
-	dark: '#0d1b2a',
-	accent: '#778da9',
+	light: '#ffffff',
+	dark: '#000000',
+	error: '#ee4266',
+	accent: '#07a0c3',
+	// success: '#2ec4b6',
+	warn: '#e3b23c',
 }
 
 const fonts = {
