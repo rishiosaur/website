@@ -6,7 +6,7 @@ const colors = {
 	dark: '#000000',
 	error: '#ee4266',
 	accent: '#07a0c3',
-	// success: '#2ec4b6',
+	success: '#2ec4b6',
 	warn: '#e3b23c',
 }
 
