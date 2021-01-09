@@ -18,10 +18,12 @@ import { LinksCommand, ProjectsCommand, WritingsCommand } from '../features'
 import { GotoCommand } from '../features/goto'
 import { PingCommand } from '../features/ping'
 
-export const CommandWrapper: React.FC<{
-	color?: string
-	command: Command
-}> = ({ children, command, color }) => {
+export const CommandWrapper: React.FC<
+	{
+		color?: string
+		command: Command
+	} & any
+> = ({ children, command, color, ...props }) => {
 	console.log(command)
 
 	return (
@@ -33,7 +35,8 @@ export const CommandWrapper: React.FC<{
 				borderLeft="2px"
 				color={color || 'color'}
 				spacing="0"
-				direction="column">
+				direction="column"
+				{...props}>
 				<Text>
 					{`${command.type}>`} {command.raw}
 				</Text>
@@ -98,7 +101,7 @@ export const Commands: React.FC = () => {
 									<Text>A custom terminal.</Text>
 									<Heading size="md">Commands</Heading>
 									<Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">
 												view {'<writings|links|projects>'}
 											</Text>
@@ -107,7 +110,7 @@ export const Commands: React.FC = () => {
 												- Returns some form of remote property off of the CMS.
 											</Text>
 										</Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">whoami</Text>
 
 											<Text>
@@ -116,7 +119,7 @@ export const Commands: React.FC = () => {
 											</Text>
 										</Stack>
 
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">help</Text>
 
 											<Text>
@@ -124,24 +127,24 @@ export const Commands: React.FC = () => {
 												website.
 											</Text>
 										</Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">clear</Text>
 
 											<Text>- Clears this terminal of all commands.</Text>
 										</Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">
 												goto {'<github|twitter|instagram|email|links>'}
 											</Text>
 
 											<Text>- Posts a redirect link to a given website.</Text>
 										</Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">back</Text>
 
 											<Text>- Goes back in history.</Text>
 										</Stack>
-										<Stack direction="row">
+										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">ping</Text>
 
 											<Text>- Want to send a message to me?</Text>
@@ -195,7 +198,13 @@ export const Commands: React.FC = () => {
 
 					case CommandType.Whoami:
 						return (
-							<CommandWrapper command={command} color="accent">
+							<CommandWrapper
+								command={command}
+								color="accent"
+								borderLeft="0"
+								paddingTop="5"
+								borderTop="2px"
+								paddingX="0">
 								<Stack spacing="5">
 									<Image
 										borderRadius="md"
@@ -205,7 +214,31 @@ export const Commands: React.FC = () => {
 										src="/life.png"
 									/>
 									<Heading>Who the heck are you?</Heading>
-									<Text>I'm Rishi!</Text>
+									<Text fontWeight="bold">A 15 year old's manifesto.</Text>
+									<Text>
+										{' '}
+										Programming isn't something that I do for money. It is
+										because it's my passion. Programming, in our world, is a
+										convoluted thing, filled with libraries, frameworks, and all
+										sorts of keyboard trickery. However, at the end of it, there
+										lies a masterful product: one that may change the world,
+										even. That is exactly what appeals to me. The ability to
+										make something revolutionary through something that is
+										incredibly accessible is the greatest thing one can do.
+									</Text>
+									<Text>
+										Ideas don't come free. They require hard work, with setbacks
+										all along the way. My job isn't necessarily to create ideas;
+										it can also be to help realize dreams. My job is to bear all
+										the grunt work that is required to put an idea into reality,
+										be it large or small.{' '}
+									</Text>
+
+									<Text width="20vw" p="5" border="1px">
+										I'm Rishi Kothari, and I am a programmer. I create efficient
+										products out of little more than dreams, and more than
+										anything else, I <em>love</em> doing it.
+									</Text>
 								</Stack>
 							</CommandWrapper>
 						)
