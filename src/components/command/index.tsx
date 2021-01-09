@@ -11,10 +11,11 @@ import {
 } from '@chakra-ui/react'
 import { useRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useColorMode } from '@chakra-ui/react'
 import { useCommands } from '../../hooks/command'
 import { Command, CommandType } from '../../types/index'
 import { Error } from '../atoms'
-import { LinksCommand, WritingsCommand } from '../features'
+import { LinksCommand, ProjectsCommand, WritingsCommand } from '../features'
 import { GotoCommand } from '../features/goto'
 
 export const CommandWrapper: React.FC<{
@@ -54,7 +55,6 @@ export const Commands: React.FC = () => {
 	const [prompt, setPrompt] = useState(defaultPrompt)
 
 	const router = useRouter()
-
 	const bottomRef = useRef(null)
 	const scrollToBottom = () => {
 		if (bottomRef)
@@ -165,6 +165,9 @@ export const Commands: React.FC = () => {
 								console.log(command)
 								return <LinksCommand command={command} />
 
+							case 'projects':
+								return <ProjectsCommand command={command} />
+
 							default:
 								return (
 									<CommandWrapper command={command} color="error">
@@ -224,7 +227,7 @@ export const Commands: React.FC = () => {
 					variant="unstyled"
 					onChange={(e) => {
 						setCurrentCommand(e.target.value.trimLeft())
-						const cmd = new Command(e.target.value.trimLeft())
+						const cmd = new Command(e.target.value.trimLeft().toLowerCase())
 						if (e.target.value === '') {
 							setPrompt(defaultPrompt)
 						} else {
@@ -234,7 +237,7 @@ export const Commands: React.FC = () => {
 					value={`${currentCommand}`}
 					onKeyPress={({ key }) => {
 						if (key === 'Enter') {
-							const command = new Command(currentCommand)
+							const command = new Command(currentCommand.toLowerCase())
 
 							setCommands(commands.concat(command))
 							setCurrentCommand('')
