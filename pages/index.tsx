@@ -21,12 +21,12 @@ import { Error } from '../src/components/atoms'
 export default function Home() {
 	return (
 		<TerminalLayout>
-			<Flex width="100%" direction="row">
+			<Flex width="100%" direction={['column', 'column', 'column', 'row']}>
 				<Box width="20rem">
-					<Image src="https://scrapbook.hackclub.com/attachments/02cbaad88de654cd9508069400e7f4a7/7e8503ea/" />
+					<Image src="/pfp.png" />
 				</Box>
 
-				<Stack marginLeft="5">
+				<Stack marginLeft={['0', '0', '0', '5']}>
 					<Text>👋 Hey there!</Text>
 					<Heading>I'm Rishi Kothari.</Heading>
 					<Text>
