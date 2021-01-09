@@ -3,7 +3,7 @@ export enum CommandType {
 	View = '👁',
 	Error = '‼️',
 	Back = '⏮',
-	About = '👋',
+	Whoami = '👋',
 	Goto = '🚀',
 	Clear = '🔃',
 }
@@ -33,6 +33,13 @@ export class Command {
 				break
 			case 'clear':
 				this.type = CommandType.Clear
+				break
+			case 'about':
+			case 'whoami':
+				this.type = CommandType.Whoami
+				break
+			case 'goto':
+				this.type = CommandType.Goto
 				break
 			default:
 				this.type = CommandType.Error
