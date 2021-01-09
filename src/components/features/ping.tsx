@@ -125,6 +125,9 @@ export const PingCommand: React.FC<{ command: Command }> = ({ command }) => {
 													First name
 												</FormLabel>
 												<Input
+													_disabled={{
+														color: 'grey',
+													}}
 													isDisabled={submitState === 'submitted'}
 													focusBorderColor={
 														submitState === 'editing'
@@ -164,6 +167,9 @@ export const PingCommand: React.FC<{ command: Command }> = ({ command }) => {
 													Email
 												</FormLabel>
 												<Input
+													_disabled={{
+														color: 'grey',
+													}}
 													isDisabled={submitState === 'submitted'}
 													focusBorderColor={
 														submitState === 'editing'
@@ -204,6 +210,9 @@ export const PingCommand: React.FC<{ command: Command }> = ({ command }) => {
 												Message
 											</FormLabel>
 											<Input
+												_disabled={{
+													color: 'grey',
+												}}
 												isDisabled={submitState === 'submitted'}
 												focusBorderColor={
 													submitState === 'editing'
