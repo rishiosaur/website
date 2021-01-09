@@ -107,7 +107,7 @@ export const Commands: React.FC = () => {
 											</Text>
 										</Stack>
 										<Stack direction="row">
-											<Text fontWeight="bold">about | whoami</Text>
+											<Text fontWeight="bold">whoami</Text>
 
 											<Text>
 												- Interested in understand who I am? I'm flattered!
