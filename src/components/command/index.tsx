@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react'
 import { useRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useColorMode } from '@chakra-ui/react'
 import { useCommands } from '../../hooks/command'
 import { Command, CommandType } from '../../types/index'
 import { Error } from '../atoms'
