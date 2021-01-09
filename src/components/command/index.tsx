@@ -1,11 +1,21 @@
 /* eslint-disable no-case-declarations */
-import { Stack, Text, Box, Input } from '@chakra-ui/react'
+import {
+	Stack,
+	Text,
+	Box,
+	Input,
+	Heading,
+	Fade,
+	Image,
+	SlideFade,
+} from '@chakra-ui/react'
 import { useRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useCommands } from '../../hooks/command'
 import { Command, CommandType } from '../../types/index'
 import { Error } from '../atoms'
 import { LinksCommand, WritingsCommand } from '../features'
+import { GotoCommand } from '../features/goto'
 
 export const CommandWrapper: React.FC<{
 	color?: string
@@ -14,21 +24,23 @@ export const CommandWrapper: React.FC<{
 	console.log(command)
 
 	return (
-		<Stack
-			paddingLeft="2"
-			paddingY="1"
-			marginY="5"
-			borderLeft="2px"
-			color={color || 'color'}
-			spacing="0"
-			direction="column">
-			<Text>
-				{`${command.type}>`} {command.raw}
-			</Text>
+		<SlideFade in>
+			<Stack
+				paddingLeft="5"
+				paddingY="1"
+				marginY="5"
+				borderLeft="2px"
+				color={color || 'color'}
+				spacing="0"
+				direction="column">
+				<Text>
+					{`${command.type}>`} {command.raw}
+				</Text>
 
-			<br />
-			{children}
-		</Stack>
+				<br />
+				{children}
+			</Stack>
+		</SlideFade>
 	)
 }
 
@@ -74,14 +86,63 @@ export const Commands: React.FC = () => {
 			overflowWrap="revert"
 			spacing="5"
 			direction="column">
-			{commands.map((command) => {
+			{commands?.map((command) => {
 				const { raw, type, args } = command
-
+				const [arg] = args
 				switch (type) {
 					case CommandType.Help:
 						return (
 							<CommandWrapper command={command}>
-								<Text>Hi</Text>
+								<Stack>
+									<Heading>🐚 riSH - the Rishi Shell</Heading>
+									<Text>A custom terminal.</Text>
+									<Heading size="md">Commands</Heading>
+									<Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">
+												view {'<writings|links|projects>'}
+											</Text>
+
+											<Text>
+												- Returns some form of remote property off of the CMS.
+											</Text>
+										</Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">about | whoami</Text>
+
+											<Text>
+												- Interested in understand who I am? I'm flattered!
+												Returns a little blurb about me.
+											</Text>
+										</Stack>
+
+										<Stack direction="row">
+											<Text fontWeight="bold">help</Text>
+
+											<Text>
+												- Returns a tiny blurb about what to do with this
+												website.
+											</Text>
+										</Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">clear</Text>
+
+											<Text>- Clears this terminal of all commands.</Text>
+										</Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">
+												goto {'<github|twitter|instagram|email|links>'}
+											</Text>
+
+											<Text>- Posts a redirect link to a given website.</Text>
+										</Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">back</Text>
+
+											<Text>- Goes back in history.</Text>
+										</Stack>
+									</Stack>
+								</Stack>
 							</CommandWrapper>
 						)
 
@@ -94,7 +155,6 @@ export const Commands: React.FC = () => {
 						return
 
 					case CommandType.View:
-						const [arg] = args
 						console.log(command)
 						switch (arg) {
 							case 'writings':
@@ -109,7 +169,7 @@ export const Commands: React.FC = () => {
 								return (
 									<CommandWrapper command={command} color="error">
 										<Error
-											message={`Invalid arguments passed to command "view." Usage: "view <writings|links|about>"`}
+											message={`Invalid arguments passed to command "view." Usage: "view <writings|links>"`}
 										/>
 									</CommandWrapper>
 								)
@@ -117,12 +177,34 @@ export const Commands: React.FC = () => {
 
 						break
 
+					case CommandType.Goto:
+						return <GotoCommand command={command} />
+
+						break
+
+					case CommandType.Whoami:
+						return (
+							<CommandWrapper command={command} color="accent">
+								<Stack spacing="5">
+									<Image
+										borderRadius="md"
+										height="20rem"
+										fit="cover"
+										width="100%"
+										src="/life.png"
+									/>
+									<Heading>Who the heck are you?</Heading>
+									<Text>I'm Rishi!</Text>
+								</Stack>
+							</CommandWrapper>
+						)
+
 					default:
 						console.log(command)
 						return (
 							<CommandWrapper command={command} color="error">
 								<Error
-									message={`${raw} is not recorgnized (not a typo) as a command. Run "help" to find out more.`}
+									message={`${raw} is not recorgnized (not a typo) as a command. Run "help" to see what you can do.`}
 								/>
 							</CommandWrapper>
 						)
@@ -135,13 +217,12 @@ export const Commands: React.FC = () => {
 				border="1px"
 				borderColor={prompt === CommandType.Error ? 'error' : 'accent'}
 				color={prompt === CommandType.Error ? 'error' : 'accent'}
-				spacing="0"
+				spacing="3"
 				direction="row">
-				<Text width="2.2em">{`${prompt}> `}</Text>
+				<Text width="2.2rem">{`${prompt}>`}</Text>
 				<Input
 					variant="unstyled"
 					onChange={(e) => {
-						console.log(e.target.value)
 						setCurrentCommand(e.target.value.trimLeft())
 						const cmd = new Command(e.target.value.trimLeft())
 						if (e.target.value === '') {
