@@ -31,7 +31,7 @@ export default function Home() {
 					<Heading>I'm Rishi Kothari.</Heading>
 					<Text>
 						TL;DR I'm a 15 year old open-source software engineer, SaaS startup
-						CEO, and coffee lover that really likes to make things using awesome
+						CTO, and coffee lover that really likes to make things using awesome
 						technologies.
 					</Text>
 					<Text>
