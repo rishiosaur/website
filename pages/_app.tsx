@@ -1,5 +1,4 @@
 import { Center, ChakraProvider, SlideFade } from '@chakra-ui/react'
-import { css } from '@emotion/react'
 import { CommandProvider } from '../src/hooks/command'
 import theme from '../src/theme/index'
 
