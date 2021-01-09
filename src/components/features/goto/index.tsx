@@ -9,6 +9,8 @@ const links = {
 	twitter: 'https://z.rishi.cx/t',
 	links: 'https://z.rishi.cx/ls',
 	email: 'mailto:hey@rishi.cx',
+	linkedin: 'https://z.rishi.cx/l',
+	spotify: 'https://z.rishi.cx/s',
 }
 
 function capitalizeFirstLetter(string: string) {
