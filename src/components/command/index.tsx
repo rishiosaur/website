@@ -16,6 +16,7 @@ import { Command, CommandType } from '../../types/index'
 import { Error } from '../atoms'
 import { LinksCommand, ProjectsCommand, WritingsCommand } from '../features'
 import { GotoCommand } from '../features/goto'
+import { PingCommand } from '../features/ping'
 
 export const CommandWrapper: React.FC<{
 	color?: string
@@ -140,6 +141,11 @@ export const Commands: React.FC = () => {
 
 											<Text>- Goes back in history.</Text>
 										</Stack>
+										<Stack direction="row">
+											<Text fontWeight="bold">ping</Text>
+
+											<Text>- Want to send a message to me?</Text>
+										</Stack>
 									</Stack>
 								</Stack>
 							</CommandWrapper>
@@ -148,6 +154,9 @@ export const Commands: React.FC = () => {
 					case CommandType.Back:
 						router.back()
 						return
+
+					case CommandType.Ping:
+						return <PingCommand command={command} />
 
 					case CommandType.Clear:
 						setCommands([])
