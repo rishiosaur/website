@@ -35,10 +35,10 @@ export const Link: React.FC<{ text: string; href: string }> = ({
 				color: mode('dark', 'light')(colorMode),
 			}}
 			backgroundColor={mode('dark', 'light')(colorMode)}
-			textDecoration="none"
-			as={NextLink}
-			href={href}>
-			<Text>{text}</Text>
+			textDecoration="none">
+			<NextLink href={href}>
+				<Text>{text}</Text>
+			</NextLink>
 		</ChakraLink>
 	)
 }
