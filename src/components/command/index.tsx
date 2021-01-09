@@ -14,9 +14,9 @@ import { useRouter } from 'next/router'
 import { useCommands } from '../../hooks/command'
 import { Command, CommandType } from '../../types/index'
 import { Error } from '../atoms'
-import { LinksCommand, ProjectsCommand, WritingsCommand } from '../features'
-import { GotoCommand } from '../features/goto'
-import { PingCommand } from '../features/ping'
+import { LinksCommand, ProjectsCommand, WritingsCommand } from '../commands'
+import { GotoCommand } from '../commands/goto'
+import { PingCommand } from '../commands/ping'
 
 export const CommandWrapper: React.FC<
 	{
