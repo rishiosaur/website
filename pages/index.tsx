@@ -30,9 +30,9 @@ export default function Home() {
 					<Text>👋 Hey there!</Text>
 					<Heading>I'm Rishi Kothari.</Heading>
 					<Text>
-						TL;DR I'm a 15 year old open-source software engineer, SaaS startup
-						CTO, and coffee lover that really likes to make things using awesome
-						technologies.
+						TL;DR I'm a 15 year old open-source software engineer, Hack Clubber
+						SaaS startup CTO, and coffee lover that really likes to make things
+						using awesome technologies.
 					</Text>
 					<Text>
 						My website's a spin on the terminal—try running 'help' in the prompt
