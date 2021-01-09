@@ -6,6 +6,7 @@ export enum CommandType {
 	Whoami = '👋',
 	Goto = '🚀',
 	Clear = '🔃',
+	Ping = '🗣',
 }
 
 export class Command {
@@ -41,7 +42,9 @@ export class Command {
 			case 'goto':
 				this.type = CommandType.Goto
 				break
-
+			case 'ping':
+				this.type = CommandType.Ping
+				break
 			default:
 				this.type = CommandType.Error
 		}
