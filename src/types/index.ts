@@ -41,6 +41,7 @@ export class Command {
 			case 'goto':
 				this.type = CommandType.Goto
 				break
+
 			default:
 				this.type = CommandType.Error
 		}
