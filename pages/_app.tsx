@@ -22,9 +22,6 @@ const App = ({ Component, pageProps }) => (
 					-webkit-font-feature-settings: 'liga' on, 'calt' on;
 					-webkit-font-smoothing: antialiased;
 					text-rendering: optimizeLegibility;
-					 {
-						/* font-family: 'Space Mono', monospace; */
-					}
 				}
 			`}
 		</style>
