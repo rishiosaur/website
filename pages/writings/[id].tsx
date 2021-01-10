@@ -53,7 +53,7 @@ export default WritingsPage
 
 export const getStaticPaths = async () => {
 	const { articles } = await request(
-		'https://api-us-east-1.graphcms.com/v2/ckjq7p0mau50s01z1aio1b4ia/master',
+		process.env.cms,
 		`
         {
             articles {
@@ -77,7 +77,7 @@ export const getStaticProps = async (req: GetStaticPropsContext) => {
 	const { id } = req.params
 
 	const { article } = await request(
-		'https://api-us-east-1.graphcms.com/v2/ckjq7p0mau50s01z1aio1b4ia/master',
+		process.env.cms,
 		`
         query Query($id:ID!) {
             article(where:{
