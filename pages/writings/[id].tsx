@@ -29,7 +29,12 @@ const WritingsPage = (props) => {
 		<TerminalLayout width="40vw">
 			<Center>
 				<Stack borderBottom="1px" paddingBottom="4" spacing="5">
-					<Image src={article.background.url} />
+					<Image
+						src={
+							article?.background.url ||
+							'https://media.graphcms.com/B26koG61TGyASUoGVvVz'
+						}
+					/>
 					<Box
 						paddingX="5"
 						paddingY="2"
@@ -37,10 +42,10 @@ const WritingsPage = (props) => {
 						borderColor="color"
 						width="20vw">
 						<Text fontSize="0.5rem">Article.</Text>
-						<Heading>{article.title}</Heading>
-						<Text>{article.description}</Text>
+						<Heading>{article?.title}</Heading>
+						<Text>{article?.description}</Text>
 					</Box>
-					<ReactMarkdown>{article.content}</ReactMarkdown>
+					<ReactMarkdown>{article?.content}</ReactMarkdown>
 				</Stack>
 			</Center>
 
@@ -105,6 +110,6 @@ export const getStaticPaths = async () => {
 		paths: articles.map(({ id }) => ({
 			params: { id },
 		})),
-		fallback: true,
+		fallback: false,
 	}
 }
