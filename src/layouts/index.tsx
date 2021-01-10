@@ -1,11 +1,13 @@
 import { Flex, Stack } from '@chakra-ui/react'
 
-export const TerminalLayout: React.FC = ({ children }) => (
+export const TerminalLayout: React.FC = ({ children, ...props }) => (
 	<Stack
-		marginY="5rem"
 		width={['100vw', '90vw', '80vw', '60vw']}
+		marginTop="30%"
+		marginBottom="10%"
 		spacing="5"
-		direction="column">
+		direction="column"
+		{...props}>
 		{children}
 	</Stack>
 )
