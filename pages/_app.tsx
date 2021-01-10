@@ -15,21 +15,16 @@ const App = ({ Component, pageProps }) => (
 		</CommandProvider>
 		<style jsx global>
 			{`
-				@font-face {
-					font-family: 'JetBrains Mono';
-					src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2')
-							format('woff2'),
-						url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf')
-							format('truetype');
-					font-weight: normal;
-					font-style: normal;
-				}
+				@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+				@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 				body {
 					-webkit-font-feature-settings: 'liga' on, 'calt' on;
 					-webkit-font-smoothing: antialiased;
 					text-rendering: optimizeLegibility;
-					font-family: 'JetBrains Mono', monospace;
+					 {
+						/* font-family: 'Space Mono', monospace; */
+					}
 				}
 			`}
 		</style>
