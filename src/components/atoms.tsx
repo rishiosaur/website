@@ -23,9 +23,10 @@ export const Error: React.FC<{ message: string }> = ({ message, children }) => {
 	)
 }
 
-export const Link: React.FC<{ text: string; href: string }> = ({
+export const Link: React.FC<{ text: string; href: string } & any> = ({
 	text,
 	href,
+	...props
 }) => {
 	const { colorMode } = useColorMode()
 	const { setCommands } = useCommands()
@@ -36,9 +37,14 @@ export const Link: React.FC<{ text: string; href: string }> = ({
 				backgroundColor: mode('light', 'dark')(colorMode),
 				color: mode('dark', 'light')(colorMode),
 			}}
+			padding="3px"
+			alignSelf="center"
+			verticalAlign="center"
+			alignContent="center"
 			onClick={() => setCommands([])}
 			backgroundColor={mode('dark', 'light')(colorMode)}
-			textDecoration="none">
+			textDecoration="none"
+			{...props}>
 			<NextLink href={href}>
 				<Text>{text}</Text>
 			</NextLink>

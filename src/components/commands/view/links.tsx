@@ -45,14 +45,16 @@ const Links: React.FC<{ command: Command }> = ({ command }) => {
 			<CommandWrapper command={command}>
 				<Stack>
 					<Heading>Links</Heading>
-					<Stack direction="row" fontSize="0.75rem">
+					<Stack align="center" direction="row" fontSize="0.75rem">
 						<Text size="0.5rem"> - Taken from</Text>
 						<Link text="c.rishi.cx" href="https://c.rishi.cx" />
 					</Stack>
 					{data.links
 						.filter(({ public: p }) => p)
 						.map(({ title, description, url }) => (
-							<Stack direction="row">
+							<Stack
+								align="center"
+								direction={['column', 'column', 'column', 'row']}>
 								<Link text={`${title}: `} href={url} />
 
 								<Text isTruncated textOverflow="ellipsis">

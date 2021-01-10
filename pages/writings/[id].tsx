@@ -26,7 +26,7 @@ const WritingsPage = (props) => {
 	}, [])
 
 	return (
-		<TerminalLayout width="40vw">
+		<TerminalLayout width={['inherit', 'inherit', 'inherit', '40vw']}>
 			<Center>
 				<Stack borderBottom="1px" paddingBottom="4" spacing="5">
 					<Image
@@ -34,13 +34,15 @@ const WritingsPage = (props) => {
 							article?.background.url ||
 							'https://media.graphcms.com/B26koG61TGyASUoGVvVz'
 						}
+						height="20rem"
+						fit="cover"
 					/>
 					<Box
 						paddingX="5"
 						paddingY="2"
 						borderLeft="1px"
 						borderColor="color"
-						width="20vw">
+						width={['inherit', 'inherit', 'inherit', '20vw']}>
 						<Text fontSize="0.5rem">Article.</Text>
 						<Heading>{article?.title}</Heading>
 						<Text>{article?.description}</Text>

@@ -42,16 +42,16 @@ const Writings: React.FC<{ command: Command }> = ({ command }) => {
 			<CommandWrapper command={command}>
 				<Stack>
 					<Heading>Writings</Heading>
-					<Stack direction="row" fontSize="0.75rem">
+					<Stack align="center" direction="row" fontSize="0.75rem">
 						<Text size="0.5rem"> - Taken from</Text>
 						<Link text="c.rishi.cx" href="https://c.rishi.cx" />
 					</Stack>
 					{data.articles.map(({ title, description, id }) => (
-						<Stack direction="row">
+						<Stack
+							align="center"
+							direction={['column', 'column', 'column', 'row']}>
 							<Link text={`"${title}"`} href={`/writings/${id}`} />
-							<Text isTruncated textOverflow="ellipsis">
-								{description}
-							</Text>
+							<Text textOverflow="ellipsis">{description}</Text>
 						</Stack>
 					))}
 				</Stack>
