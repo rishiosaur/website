@@ -76,6 +76,8 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (req: GetStaticPropsContext) => {
 	const { id } = req.params
 
+	console.log(process.env.cms)
+
 	const { article } = await request(
 		process.env.cms,
 		`
