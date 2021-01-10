@@ -1,5 +1,5 @@
 export enum CommandType {
-	Help = '❓',
+	Help = '🛠',
 	View = '👁',
 	Error = '‼️',
 	Back = '⏮',
