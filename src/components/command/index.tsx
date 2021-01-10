@@ -114,10 +114,7 @@ export const Commands: React.FC<{ scroll?: boolean }> = ({ scroll }) => {
 										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">whoami</Text>
 
-											<Text>
-												- Interested in understand who I am? I'm flattered!
-												Returns a little blurb about me.
-											</Text>
+											<Text>- Returns a little blurb about me.</Text>
 										</Stack>
 
 										<Stack direction={['column', 'column', 'column', 'row']}>
@@ -138,7 +135,7 @@ export const Commands: React.FC<{ scroll?: boolean }> = ({ scroll }) => {
 												goto {'<github|twitter|instagram|email|links|home>'}
 											</Text>
 
-											<Text>- Posts a redirect link to a given website.</Text>
+											<Text>- Posts a link to a certain website.</Text>
 										</Stack>
 										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">back</Text>
