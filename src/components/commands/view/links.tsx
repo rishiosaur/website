@@ -21,11 +21,12 @@ const Loader: React.FC<{ command: Command }> = ({ command }) => {
 const Links: React.FC<{ command: Command }> = ({ command }) => {
 	const { data, error } = useCMS(`
     {
-        routes {
+        links {
           title
           description
           public
-          name
+		  
+		  url
         }
       }
     `)
@@ -48,11 +49,11 @@ const Links: React.FC<{ command: Command }> = ({ command }) => {
 						<Text size="0.5rem"> - Taken from</Text>
 						<Link text="c.rishi.cx" href="https://c.rishi.cx" />
 					</Stack>
-					{data.routes
+					{data.links
 						.filter(({ public: p }) => p)
-						.map(({ title, description, name }) => (
+						.map(({ title, description, url }) => (
 							<Stack direction="row">
-								<Link text={`${title}: `} href={`https://z.rishi.cx/${name}`} />
+								<Link text={`${title}: `} href={url} />
 
 								<Text isTruncated textOverflow="ellipsis">
 									{description}
