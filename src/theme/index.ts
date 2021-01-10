@@ -12,10 +12,10 @@ const colors = {
 
 const fonts = {
 	body: {
-		fontFamily: 'JetBrains Mono, monospace',
+		fontFamily: 'Space Mono, monospace',
 	},
 	heading: {
-		fontFamily: 'Inter, -system-ui',
+		fontFamily: 'Libre Baskerville, -system-ui, sans-serif ',
 	},
 }
 
@@ -24,6 +24,10 @@ const styles = {
 		body: {
 			color: mode('dark', 'light')(props),
 			bg: mode('light', 'dark')(props),
+			// fontFamily: 'Inter, sans-serif',
+		},
+		'.chakra-heading': {
+			fontFamily: 'Poppins, sans-serif',
 		},
 		lineHeight: 'base',
 		'*::placeholder': {
@@ -43,5 +47,5 @@ const config = {
 	useSystemColorMode: true,
 }
 
-const theme = { ...extendTheme({ colors, config }), styles }
+const theme = { ...extendTheme({ colors, config, fonts }), styles }
 export default theme
