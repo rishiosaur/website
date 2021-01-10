@@ -100,6 +100,8 @@ export const getStaticProps = async (req: GetStaticPropsContext) => {
 		}
 	)
 
+	console.log(article)
+
 	return {
 		props: {
 			article,
