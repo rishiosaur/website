@@ -51,28 +51,6 @@ const WritingsPage = (props) => {
 
 export default WritingsPage
 
-export const getStaticPaths = async () => {
-	const { articles } = await request(
-		process.env.cms,
-		`
-        {
-            articles {
-                id
-            }
-        }
-    `
-	)
-
-	console.log(articles)
-
-	return {
-		paths: articles.map(({ id }) => ({
-			params: { id },
-		})),
-		fallback: true,
-	}
-}
-
 export const getStaticProps = async (req: GetStaticPropsContext) => {
 	const { id } = req.params
 
@@ -106,5 +84,27 @@ export const getStaticProps = async (req: GetStaticPropsContext) => {
 		props: {
 			article,
 		},
+	}
+}
+
+export const getStaticPaths = async () => {
+	const { articles } = await request(
+		process.env.cms,
+		`
+        {
+            articles {
+                id
+            }
+        }
+    `
+	)
+
+	console.log(articles)
+
+	return {
+		paths: articles.map(({ id }) => ({
+			params: { id },
+		})),
+		fallback: true,
 	}
 }
