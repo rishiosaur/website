@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Stack, Text, Heading } from '@chakra-ui/react'
 import { CommandWrapper } from '../../command/index'
 import { Error, Link } from '../../atoms'

@@ -5,16 +5,12 @@ import {
 	FormErrorMessage,
 	FormLabel,
 	Input,
-	Spacer,
 	Stack,
 	Text,
 	Heading,
 } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
-import { STATUS_CODES } from 'http'
 import { useState } from 'react'
-
-import Head from 'next/head'
 import { Command } from '../../types/index'
 import { CommandWrapper } from '../command'
 import { useEmoji } from '../../hooks/interval'
