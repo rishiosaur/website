@@ -9,14 +9,8 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react'
-import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react'
 import { TerminalLayout } from '../src/layouts/index'
-import { useCommands } from '../src/hooks/command'
-import { Command, CommandType } from '../src/types/index'
-import { Commands, CommandWrapper } from '../src/components/command/index'
-import { WritingsCommand } from '../src/components/commands'
-import { Error } from '../src/components/atoms'
+import { Commands } from '../src/components/command/index'
 
 export default function Home() {
 	return (
