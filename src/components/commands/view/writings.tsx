@@ -21,7 +21,7 @@ const Loader: React.FC<{ command: Command }> = ({ command }) => {
 const Writings: React.FC<{ command: Command }> = ({ command }) => {
 	const { data, error } = useCMS(`
         {
-            articles {
+            articles(orderBy:createdAt_DESC,first:5) {
                 id
                 title
                 description
@@ -54,6 +54,10 @@ const Writings: React.FC<{ command: Command }> = ({ command }) => {
 							<Text textOverflow="ellipsis">{description}</Text>
 						</Stack>
 					))}
+					<Stack align="center" direction="row" fontSize="0.75rem">
+						<Text size="0.5rem">Full list at</Text>
+						<Link text="/writings" href="/writings" />
+					</Stack>
 				</Stack>
 			</CommandWrapper>
 		)
