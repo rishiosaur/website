@@ -38,7 +38,6 @@ const Writings: React.FC<{ command: Command }> = ({ command }) => {
 	}
 
 	if (data) {
-		console.log(data)
 		return (
 			<CommandWrapper command={command}>
 				<Stack>
