@@ -13,44 +13,45 @@ import { useRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useCommands } from '../../hooks/command'
 import { Command, CommandType } from '../../types/index'
-import { Error } from '../atoms'
-import { LinksCommand, ProjectsCommand, WritingsCommand } from '../commands'
+import { Error, Link } from '../atoms'
+
 import { GotoCommand } from '../commands/goto'
 import { PingCommand } from '../commands/ping'
+import {
+	LinksCommand,
+	ProjectsCommand,
+	WritingsCommand,
+} from '../commands/view'
 
 export const CommandWrapper: React.FC<
 	{
 		color?: string
 		command: Command
 	} & any
-> = ({ children, command, color, ...props }) => {
-	console.log(command)
+> = ({ children, command, color, ...props }) => (
+	<SlideFade in>
+		<Stack
+			paddingLeft="5"
+			paddingY="1"
+			marginY="5"
+			borderLeft="2px"
+			color={color || 'color'}
+			spacing="0"
+			direction="column"
+			{...props}>
+			<Text fontFamily="Space Mono, monospace">
+				{`${command.type}>`} {command.raw}
+			</Text>
 
-	return (
-		<SlideFade in>
-			<Stack
-				paddingLeft="5"
-				paddingY="1"
-				marginY="5"
-				borderLeft="2px"
-				color={color || 'color'}
-				spacing="0"
-				direction="column"
-				{...props}>
-				<Text>
-					{`${command.type}>`} {command.raw}
-				</Text>
-
-				<br />
-				{children}
-			</Stack>
-		</SlideFade>
-	)
-}
+			<br />
+			{children}
+		</Stack>
+	</SlideFade>
+)
 
 const defaultPrompt = '✨'
 
-export const Commands: React.FC = () => {
+export const Commands: React.FC<{ scroll?: boolean }> = ({ scroll }) => {
 	const { commands, setCommands } = useCommands()
 
 	const [currentCommand, setCurrentCommand] = useState('')
@@ -60,7 +61,7 @@ export const Commands: React.FC = () => {
 	const router = useRouter()
 	const bottomRef = useRef(null)
 	const scrollToBottom = () => {
-		if (bottomRef)
+		if (bottomRef && bottomRef.current)
 			bottomRef.current.scrollIntoView({
 				behavior: 'smooth',
 				block: 'start',
@@ -134,7 +135,7 @@ export const Commands: React.FC = () => {
 										</Stack>
 										<Stack direction={['column', 'column', 'column', 'row']}>
 											<Text fontWeight="bold">
-												goto {'<github|twitter|instagram|email|links>'}
+												goto {'<github|twitter|instagram|email|links|home>'}
 											</Text>
 
 											<Text>- Posts a redirect link to a given website.</Text>
@@ -178,6 +179,14 @@ export const Commands: React.FC = () => {
 
 							case 'projects':
 								return <ProjectsCommand command={command} />
+
+							case 'source':
+								router.push('https://z.rishi.cx/g/website')
+								return (
+									<CommandWrapper command={command}>
+										<Text>Redirecting to rishiosaur/website...</Text>
+									</CommandWrapper>
+								)
 
 							default:
 								return (
@@ -262,10 +271,16 @@ export const Commands: React.FC = () => {
 				borderColor={prompt === CommandType.Error ? 'error' : 'accent'}
 				color={prompt === CommandType.Error ? 'error' : 'accent'}
 				spacing="3"
-				direction="row">
+				direction="row"
+				fontFamily="Space Mono, monospace">
 				<Text width="2.2rem">{`${prompt}>`}</Text>
 				<Input
 					variant="unstyled"
+					placeholder="Type 'help' to get started."
+					_placeholder={{
+						color: 'accent',
+						opacity: '0.5',
+					}}
 					onChange={(e) => {
 						setCurrentCommand(e.target.value.trimLeft())
 						const cmd = new Command(e.target.value.trimLeft().toLowerCase())

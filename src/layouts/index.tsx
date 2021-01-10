@@ -1,6 +1,6 @@
-import { Flex, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 
-export const TerminalLayout: React.FC = ({ children, ...props }) => (
+export const TerminalLayout: React.FC<any> = ({ children, ...props }) => (
 	<Stack
 		width={['100vw', '90vw', '80vw', '60vw']}
 		marginTop="30%"
